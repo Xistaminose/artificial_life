@@ -24,7 +24,7 @@ func NewBriansBrain(width, height int) *BriansBrain {
 
 	grid.Randomize(func(isAlive bool) color.Color {
 		if isAlive {
-			return color.White
+			return color.RGBA{0, 0, 255, 255}
 		}
 		return color.Black
 	})
@@ -70,7 +70,7 @@ func (bb *BriansBrain) Draw(screen *ebiten.Image) {
 	}
 
 	if bb.IsPaused() {
-		ebitenutil.DebugPrintAt(screen, "Paused", 480/2-30, 480/2)
+		ebitenutil.DebugPrintAt(screen, "Paused", screen.Bounds().Dx()/2-30, screen.Bounds().Dy()/2)
 	}
 }
 
@@ -80,7 +80,7 @@ func (bb *BriansBrain) Layout(outsideWidth, outsideHeight int) (int, int) {
 
 func (bb *BriansBrain) getState(c color.Color) int {
 	switch c {
-	case color.White:
+	case color.RGBA{0, 0, 255, 255}:
 		return BrainOn
 	case color.Gray{Y: 128}: // Mid-gray color for "dying"
 		return BrainDying
@@ -92,7 +92,7 @@ func (bb *BriansBrain) getState(c color.Color) int {
 func (bb *BriansBrain) stateToColor(state int) color.Color {
 	switch state {
 	case BrainOn:
-		return color.White
+		return color.RGBA{0, 0, 255, 255}
 	case BrainDying:
 		return color.Gray{Y: 128} // Mid-gray color
 	default:

@@ -19,9 +19,9 @@ func main() {
 	var sim simulation.Simulation
 
 	// Choose the simulation mode and type
-	simType := "terrain" // "game_of_life", "schelling", "brians_brain", or "terrain"
-	threshold := 0.1     // Satisfaction threshold for Schelling model
-	frameRate := 10      // Frame rate for the simulation
+	simType := "brians_brain" // "game_of_life", "schelling", "brians_brain", or "terrain"
+	threshold := 0.1          // Satisfaction threshold for Schelling model
+	frameRate := 10           // Frame rate for the simulation
 
 	switch simType {
 	case "game_of_life":

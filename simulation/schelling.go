@@ -137,6 +137,9 @@ func (s *Schelling) Draw(screen *ebiten.Image) {
 
 	// Draw the current threshold value on the screen
 	ebitenutil.DebugPrint(screen, "Threshold: "+fmt.Sprintf("%.2f", s.threshold))
+	if s.IsPaused() {
+		ebitenutil.DebugPrintAt(screen, "Paused", screen.Bounds().Dx()/2-30, screen.Bounds().Dy()/2)
+	}
 }
 
 func (s *Schelling) Layout(outsideWidth, outsideHeight int) (int, int) {

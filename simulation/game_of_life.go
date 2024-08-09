@@ -71,6 +71,11 @@ func (g *GameOfLife) Draw(screen *ebiten.Image) {
 			ebitenutil.DrawRect(screen, float64(x*cellSize), float64(y*cellSize), cellSize, cellSize, g.grid.cells[y][x])
 		}
 	}
+
+	if g.IsPaused() {
+		ebitenutil.DebugPrintAt(screen, "Paused", screen.Bounds().Dx()/2-30, screen.Bounds().Dy()/2)
+	}
+
 }
 
 func (g *GameOfLife) Layout(outsideWidth, outsideHeight int) (int, int) {

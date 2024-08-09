@@ -7,6 +7,7 @@ import (
 type BaseSimulation struct {
 	paused       bool
 	mousePressed bool
+	grid         *Grid
 }
 
 func (b *BaseSimulation) UpdatePauseState() {
@@ -22,4 +23,14 @@ func (b *BaseSimulation) UpdatePauseState() {
 
 func (b *BaseSimulation) IsPaused() bool {
 	return b.paused
+}
+
+func (b *BaseSimulation) Update() error {
+	return nil
+}
+
+func (b *BaseSimulation) Draw(screen *ebiten.Image) {}
+
+func (b *BaseSimulation) Layout(outsideWidth, outsideHeight int) (int, int) {
+	return b.grid.width * cellSize, b.grid.height * cellSize
 }
