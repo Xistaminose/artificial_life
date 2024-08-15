@@ -19,9 +19,9 @@ func main() {
 	var sim simulation.Simulation
 
 	// Choose the simulation mode and type
-	simType := "brians_brain" // "game_of_life", "schelling", "brians_brain", or "terrain"
-	threshold := 0.1          // Satisfaction threshold for Schelling model
-	frameRate := 10           // Frame rate for the simulation
+	simType := "random_walker" // "game_of_life", "schelling", "brians_brain", "terrain" or "random_walker"
+	threshold := 0.1           // Satisfaction threshold for Schelling model
+	frameRate := 10            // Frame rate for the simulation
 
 	switch simType {
 	case "game_of_life":
@@ -41,6 +41,11 @@ func main() {
 		sim = simulation.NewBriansBrain(screenWidth/cellSize, screenHeight/cellSize)
 	case "terrain":
 		sim = simulation.NewTerrain(screenWidth/cellSize, screenHeight/cellSize, 0, simulation.GetBiomes())
+	case "random_walker":
+		sim = simulation.NewrandomWalker(screenWidth/cellSize, screenHeight/cellSize)
+	default:
+		log.Fatal("Invalid simulation type")
+
 	}
 
 	ebiten.SetWindowSize(screenWidth, screenHeight)

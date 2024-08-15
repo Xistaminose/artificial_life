@@ -3,6 +3,9 @@ package simulation
 import (
 	"image/color"
 	"math/rand"
+
+	"github.com/hajimehoshi/ebiten/v2"
+	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
 )
 
 type Grid struct {
@@ -36,6 +39,22 @@ func (g *Grid) Randomize(randomizeColorFunc func(isAlive bool) color.Color) {
 	for y := range g.cells {
 		for x := range g.cells[y] {
 			g.cells[y][x] = randomizeColorFunc(rand.Float64() < 0.5)
+		}
+	}
+}
+
+func (g *Grid) Draw(screen *ebiten.Image, cellSize int) {
+
+	for y := range g.cells {
+		for x := range g.cells[y] {
+			color := g.cells[y][x]
+			ebitenutil.DrawRect(
+				screen,
+				float64(x*cellSize),
+				float64(y*cellSize),
+				float64(cellSize),
+				float64(cellSize),
+				color)
 		}
 	}
 }
